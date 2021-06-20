@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 5906 2481" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(4.70835,0,0,4.71998,-3680.32,-4697.15)">
+        <path d="M1166.75,1167.38C1166.75,1145.76 1149.15,1128.21 1127.48,1128.21L848.68,1128.21C827.005,1128.21 809.408,1145.76 809.408,1167.38L809.408,1423.59C809.408,1445.21 827.005,1462.77 848.68,1462.77L1127.48,1462.77C1149.15,1462.77 1166.75,1445.21 1166.75,1423.59L1166.75,1167.38Z" style="fill:rgb(234,76,137);"/>
+    </g>
+    <g transform="matrix(4.83012,0,0,3.97732,-3774.53,-3645.26)">
+        <rect x="841.107" y="1181.21" width="286.002" height="245.465" style="fill:white;"/>
+    </g>
+    <g transform="matrix(4.66649,0,0,4.66649,-3631.47,-4628.48)">
+        <path d="M907.267,1103.58C907.267,1092.64 898.388,1083.76 887.451,1083.76C876.514,1083.76 867.635,1092.64 867.635,1103.58L867.635,1127.71C867.635,1138.64 876.514,1147.52 887.451,1147.52C898.388,1147.52 907.267,1138.64 907.267,1127.71L907.267,1103.58Z" style="fill:rgb(234,76,137);"/>
+    </g>
+    <g transform="matrix(4.66649,0,0,4.66649,-2699.77,-4628.48)">
+        <path d="M907.267,1103.58C907.267,1092.64 898.388,1083.76 887.451,1083.76C876.514,1083.76 867.635,1092.64 867.635,1103.58L867.635,1127.71C867.635,1138.64 876.514,1147.52 887.451,1147.52C898.388,1147.52 907.267,1138.64 907.267,1127.71L907.267,1103.58Z" style="fill:rgb(234,76,137);"/>
+    </g>
+    <g transform="matrix(5.3786,0,0,5.3786,-3069.12,-1707.27)">
+        <g transform="matrix(0.969678,0,0,0.999619,193.769,171.655)">
+            <ellipse cx="512.705" cy="416.288" rx="35.852" ry="35.502"/>
+        </g>
+        <g transform="matrix(0.969678,0,0,0.999619,318.501,171.655)">
+            <ellipse cx="512.705" cy="416.288" rx="35.852" ry="35.502"/>
+        </g>
+        <g transform="matrix(1,0,0,1,176.797,171.497)">
+            <ellipse cx="523.332" cy="401.437" rx="12.483" ry="11.999" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,301.53,171.497)">
+            <ellipse cx="523.332" cy="401.437" rx="12.483" ry="11.999" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,176.797,171.497)">
+            <ellipse cx="503.248" cy="439.123" rx="3.724" ry="4.173" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,301.53,171.497)">
+            <ellipse cx="503.248" cy="439.123" rx="3.724" ry="4.173" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,176.797,171.497)">
+            <ellipse cx="492.882" cy="430.995" rx="6.348" ry="6.641" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,301.53,171.497)">
+            <ellipse cx="492.882" cy="430.995" rx="6.348" ry="6.641" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,176.797,171.497)">
+            <ellipse cx="517.75" cy="453.962" rx="14.502" ry="8.03" style="fill:rgb(234,76,137);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,301.53,171.497)">
+            <ellipse cx="517.75" cy="453.962" rx="14.502" ry="8.03" style="fill:rgb(234,76,137);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,179.797,171.497)">
+            <path d="M592.963,426.727C592.065,435.293 583.754,442.014 573.647,442.014C563.54,442.014 555.228,435.293 554.331,426.727L592.963,426.727Z"/>
+        </g>
+    </g>
+    <g transform="matrix(16.847,0,0,16.847,-42951.1,-11363.9)">
+        <text x="2679.22px" y="747.277px" style="font-family:'HiraKakuStd-W8', 'Hiragino Kaku Gothic Std', sans-serif;font-weight:800;font-size:50px;fill:rgb(234,76,137);">agenda</text>
+    </g>
+    <g transform="matrix(16.8408,0,0,16.8408,-42952.1,-10534.7)">
+        <text x="2679.22px" y="747.277px" style="font-family:'HiraKakuStd-W8', 'Hiragino Kaku Gothic Std', sans-serif;font-weight:800;font-size:50px;fill:rgb(234,76,137);">peques</text>
+    </g>
+</svg>

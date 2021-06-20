@@ -1,0 +1,35 @@
+.loading_container {
+  width: 100vw;
+  height: 85vh;
+  /* background: var(--gray-500); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading_img {
+  /* width: 40%; */
+  height: 30%;
+}
+
+.eyes-Agenda {
+  fill: white;
+  animation-name: eyes;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes eyes {
+  0% {
+    fill: var(--black);
+  }
+  25% {
+    fill: var(--white);
+  }
+  50% {
+    fill: var(--black);
+  }
+  100% {
+    fill: var(--white);
+  }
+}

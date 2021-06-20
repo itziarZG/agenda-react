@@ -1,0 +1,130 @@
+.form_event {
+  max-width: 384px;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.reset-Info-createEvent {
+  background-color: var(--white);
+  fill: var(--primary);
+  padding: 2px 3px;
+  border-radius: 100%;
+  font-weight: bold;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  box-shadow: 3px 3px 6px var(--gray-600);
+  /* border: 2px solid var(--primary); */
+  margin-top: 20px;
+  position: fixed;
+  /* top: 100px; */
+  right: 30px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-decoration: none;
+}
+
+.reset-Info-createEvent:hover {
+  fill: var(--white);
+  background-color: var(--primary);
+  box-shadow: 5px 5px 6px var(--gray-600);
+}
+
+.create-event-box {
+  margin-top: 20px;
+}
+
+.create_event_title {
+  text-align: left;
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.event_form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.event_form_input {
+  max-width: 384px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 16px;
+  outline: none;
+  border-radius: 8px;
+  border: none;
+  appearance: none;
+  color: var(--black-200);
+  background-color: var(--gray-200);
+}
+
+.event_form_label {
+  margin: 14px 0 4px;
+  color: var(--black-200);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.event_btn {
+  margin-top: 20px;
+  max-width: 384px;
+  width: 100%;
+  padding: 10px 16px;
+  cursor: pointer;
+  border: none;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: 8px;
+  appearance: none;
+  position: relative;
+  outline: none;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  height: 40px;
+}
+
+.event_btn:disabled {
+  opacity: 0.5;
+}
+
+.event_btn:disabled:hover {
+  opacity: 0.5;
+}
+
+.event_btn:hover {
+  opacity: 0.7;
+}
+
+@media screen and (min-width: 750px) {
+  .create-event-box {
+    display: flex;
+  }
+  .box-create-event-img {
+    width: 30%;
+  }
+  .form_event {
+    width: 70%;
+  }
+  .create-event-img {
+    width: 25%;
+    height: 100vh;
+    background-image: url('./img/img-create-event-2.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+    margin-left: 10%;
+    position: fixed;
+    opacity: 0.7;
+  }
+}

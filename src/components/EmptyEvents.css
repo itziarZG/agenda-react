@@ -1,0 +1,39 @@
+.empty_events_container {
+  width: 100vw;
+  height: 85vh;
+  /* background: var(--gray-500); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading_img {
+  height: 30%;
+}
+
+.eyes-empty {
+  fill: var(--white);
+}
+
+.eyes {
+  fill: var(--black);
+  animation-name: empty;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.eyes-Agenda {
+  fill: white;
+}
+
+@keyframes empty {
+  0% {
+    fill: var(--black);
+  }
+  50% {
+    fill: var(--black);
+  }
+  100% {
+    fill: var(--white);
+  }
+}
