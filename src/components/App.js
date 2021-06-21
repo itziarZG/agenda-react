@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import "./App.css";
 import Header from "./Header";
@@ -26,16 +26,20 @@ function App() {
         <Route exact path="/">
           <ListEvents userId={userData.id} />
         </Route>
-        <Route path="/signIn">
+        <Route exact path="/events">
+          <Redirect to="/" />
+        </Route>
+
+        <Route path="/#/signIn">
           <SignIn setUserData={setUserData} />
         </Route>
-        <Route path="/signUp">
+        <Route path="/#/signUp">
           <SignUp setUserData={setUserData} />
         </Route>
         <Route path="/createEvents">
           <CreateEvents userId={userData.id} />
         </Route>
-        <Route path="/eventDetail/:id">
+        <Route path="/#/eventDetail/:id">
           <InfoDetailEvent />
         </Route>
       </Switch>
