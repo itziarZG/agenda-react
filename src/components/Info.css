@@ -25,10 +25,10 @@
 }
 
 .info__link {
-  align-self: center;
+  margin-left: 50%;
   font-size: 16px;
   font-weight: 700;
-  color: var(--secondary);
+  color: var(--primary);
 }
 .info__line {
   width: 100%;
