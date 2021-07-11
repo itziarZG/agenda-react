@@ -51,7 +51,7 @@
 .header_logo {
   width: 40px;
   height: 40px;
-  background-image: url('./img/agenda_peques_logo.svg');
+  background-image: url("./img/agenda_peques_logo.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -87,7 +87,7 @@
   .header_logo {
     width: 120px;
     height: 120px;
-    background-image: url('./img/agenda_peques_logo_text.svg');
+    background-image: url("./img/agenda_peques_logo_text.svg");
     background-repeat: no-repeat;
     background-position: center;
   }

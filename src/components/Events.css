@@ -120,6 +120,20 @@
   .event_title {
     max-width: 300px;
   }
+  .info_detail_footer {
+    width: 100%;
+    height: 80px;
+    background-image: url("./img/footerImg.svg");
+    background-repeat: repeat;
+    background-position: right;
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    opacity: 0.3;
+    margin: 0;
+    padding: 0;
+    /* mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
+  }
 }
 
 @media screen and (min-width: 1000px) {

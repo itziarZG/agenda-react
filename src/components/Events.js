@@ -48,6 +48,7 @@ const Events = ({ events, date, userId }) => {
           </div>
         );
       })}
+      <div className="info_detail_footer"></div>
     </div>
   );
 };

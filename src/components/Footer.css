@@ -18,6 +18,18 @@
 .copyright {
   font-size: 10;
 }
+.footer_info {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  color: var(--primary);
+  padding: 0 5px;
+  font-size: 24px;
+  font-weight: 700;
+  background-color: var(--white);
+  border-radius: 6px;
+  box-shadow: #d1d9e6 2px 2px 5px;
+}
 @media all and (min-width: 720px) {
   .footer {
     flex-direction: row;

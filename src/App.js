@@ -9,6 +9,7 @@ import CreateEvents from "./components/CreateEvents";
 import ListEvents from "./components/ListEvents";
 import InfoDetailEvent from "./components/InfoDetailEvent";
 import Footer from "./components/Footer";
+import Info from "./components/Info";
 
 function App() {
   const [userData, setUserData] = useState("");
@@ -42,6 +43,9 @@ function App() {
         </Route>
         <Route path="/eventDetail/:id">
           <InfoDetailEvent />
+        </Route>
+        <Route path="/info">
+          <Info />
         </Route>
       </Switch>
 
