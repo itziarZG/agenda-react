@@ -44,7 +44,8 @@ function App() {
           <InfoDetailEvent />
         </Route>
       </Switch>
-      {/* <Footer /> */}
+
+      <Footer />
     </div>
   );
 }
