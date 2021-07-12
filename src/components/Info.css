@@ -13,7 +13,7 @@
   /* mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
 }
 .info__texts {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 185px);
   overflow: scroll;
   padding: 10px;
   color: var(--gray-800);

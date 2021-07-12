@@ -86,7 +86,6 @@ const InfoDetailEvent = () => {
           <div className="info_cat_img"></div>
         </div>
       </div>
-      <div className="info_detail_footer"></div>
     </div>
   );
 };

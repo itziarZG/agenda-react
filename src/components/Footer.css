@@ -1,42 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
 .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  height: 40px;
-  padding: 5px;
+  height: 75px;
+  padding: 30px 10px 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer_logo {
+  width: 100px;
+  height: 30px;
+  background-image: url("./img/agenda_peques_logo_text.svg");
+  background-repeat: no-repeat;
+  background-position: start;
+}
+
+.footer_box1 {
+  width: 30%;
+  height: 70px;
   display: flex;
   flex-direction: column;
-  border-top: var(--gray-200) 1px solid;
-  margin: auto;
-  background-color: white;
-  color: black;
-  text-align: center;
+  align-items: flex-start;
+  justify-content: space-around;
+  z-index: 1;
+}
+
+.footer_box2 {
+  width: 70%;
+  height: 65px;
   font-size: 12px;
-  font-weight: 500;
+  color: var(--gray-800);
+  text-align: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  z-index: 1;
 }
+
 .copyright {
-  font-size: 10;
+  font-size: 14px;
+  color: var(--gray-800);
 }
-.footer_info {
+
+.footer_mail {
+  font-size: 12px;
+  color: var(--gray-800);
+  font-weight: bold;
+}
+
+.footer_authors {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: var(--gray-800);
+}
+
+.footer_detail {
+  width: 100%;
+  height: 45px;
+  background-image: url("./img/footerImg.svg");
+  background-repeat: repeat;
+  background-position: right;
   position: fixed;
-  bottom: 10px;
-  left: 10px;
-  color: var(--primary);
-  padding: 0 5px;
-  font-size: 24px;
+  bottom: 0;
+  left: 0;
+  opacity: 0.3;
+  margin: 0;
+  padding: 0;
+}
+
+.footer_info {
   font-weight: 700;
+  cursor: pointer;
+  color: var(--primary);
+  font-size: 14px;
+  z-index: 5;
+}
+
+.footer_info:hover {
+  font-weight: 700;
+  padding: 3px 12px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  color: var(--primary);
   background-color: var(--white);
   border-radius: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 20px;
+  height: 28px;
+  margin-top: 20px;
+  opacity: 0.7;
   box-shadow: #d1d9e6 2px 2px 5px;
 }
-@media all and (min-width: 720px) {
+
+@media screen and (min-width: 1200px) {
   .footer {
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
   }
-  .footer_info {
-    left: 45%;
+
+  .footer_detail {
+    width: 100%;
+    height: 50px;
   }
 }

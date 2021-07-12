@@ -53,7 +53,6 @@ export default function Info() {
         estaremos encantad@s! Si eres ayuntamiento, biblioteca o colegio,
         también eres más que bienvenid@.
       </p>
-      <div className="info_detail_footer"></div>
     </div>
   );
 }

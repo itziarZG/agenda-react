@@ -1,18 +1,33 @@
-import "./Footer.css";
-import { Link } from "react-router-dom";
+import React from "react";
 
-export default function Footer() {
+import "./Footer.css";
+
+const Footer = (props) => {
   return (
-    <footer class="footer">
-      <Link className="footer_info" to="/info">
-        ?
-      </Link>
-      <a href="https://marga.pro/">Design by: Marga Martínez</a>
-      <p class="copyright">
-        {" "}
-        <a href="https://marga.pro/">ItziarZG </a>&{" "}
-        <a href="https://marga.pro/">MargaM </a>© 2021
-      </p>
-    </footer>
+    <div className="footer">
+      <div className="footer_box1">
+        <div className="footer_logo"></div>
+
+        <p className="copyright">&copy; 2021</p>
+        <p className="footer_info"> + info</p>
+      </div>
+
+      <div className="footer_box2">
+        <p>
+          Design by{" "}
+          <a href="http://marga.pro" className="footer_authors">
+            Marga Martinez
+          </a>
+        </p>
+        <p>
+          Created by <span className="footer_authors">ItziarZG & Marga</span>
+        </p>
+
+        <p className="footer_mail">agendapequeseivissa@gmail.com</p>
+      </div>
+      <div className="footer_detail"></div>
+    </div>
   );
-}
+};
+
+export default Footer;
