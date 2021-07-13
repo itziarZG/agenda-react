@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from "react-router-dom";
 import "./Footer.css";
 
 const Footer = (props) => {
@@ -9,7 +9,10 @@ const Footer = (props) => {
         <div className="footer_logo"></div>
 
         <p className="copyright">&copy; 2021</p>
-        <p className="footer_info"> + info</p>
+        <Link to="/info" className="footer_info">
+          {" "}
+          + info
+        </Link>
       </div>
 
       <div className="footer_box2">
