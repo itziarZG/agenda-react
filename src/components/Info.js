@@ -5,9 +5,10 @@ export default function Info() {
   return (
     <div className="info__texts">
       <Link className="info__link" to="/">
-        Home
+        Volver a Eventos
       </Link>
-      <p>
+
+      <p className="info__texts__text">
         CAT- Hola. Volia, simplement, explicar-te què és i el perquè d'aquest
         projecte. Aquesta web surt de la meva pròpia necessitat d'assabentar-me
         dels esdeveniments que hi ha a l'illa per a anar amb la meva família,
