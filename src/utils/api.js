@@ -6,10 +6,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const api = {};
 
-// api.createEvent = async function (eventData) {
-//   const { data } = await supabase.from("Events").insert([eventData]);
-//   return data;
-// };
 export function createEvent(eventData) {
   return supabase.from("events").insert([eventData]);
 }
