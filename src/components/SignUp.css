@@ -116,7 +116,7 @@
 .signUp_img_globe {
   width: 70%;
   margin-top: 50px;
-  background-image: url('./img/globe.svg');
+  background-image: url('/img/globe.svg');
   height: 100%;
   background-repeat: no-repeat;
   /* background-color: chocolate; */
@@ -147,7 +147,7 @@
 
   .signUp_img_globe {
     width: 70%;
-    background-image: url('./img/sign-up-globe.svg');
+    background-image: url('/img/sign-up-globe.svg');
     background-repeat: no-repeat;
     background-position: center;
 

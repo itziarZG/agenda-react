@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useHistory, Link, useLocation } from "react-router-dom";
-import "./CreateEvents.css";
-import { createEvent } from "../utils/api";
-import IconReset from "../components/img/IconReset.js";
+import { useRouter, Link, useLocation } from "next/router";
+import { createEvent } from "utils/api";
+import IconReset from "components/icons/IconReset.js";
+import Head from "next/head";
 
 const CreateEvents = ({ userId }) => {
   let location = useLocation();
@@ -38,7 +38,7 @@ const CreateEvents = ({ userId }) => {
 
   const [eventHour, setEventHour] = useState("");
 
-  let history = useHistory();
+  let history = useRouter();
 
   function handleEventImg(ev) {
     setEventImg(ev.target.value);
@@ -105,7 +105,11 @@ const CreateEvents = ({ userId }) => {
 
   return (
     <>
-      <Link to="/" style={{ textDecoration: "none" }}>
+     <Head>
+        <title>Agenda Peques - Crear evento</title>
+        <meta name="description" content="Crea un evento para compartirla con todas las personas suscritas en la página de Agenda Peques" />
+      </Head>
+      <Link href="/" style={{ textDecoration: "none" }}>
         <IconReset className="reset-Info-createEvent" />
       </Link>
       <div className="create-event-box">

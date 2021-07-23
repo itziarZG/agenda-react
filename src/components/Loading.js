@@ -1,26 +1,14 @@
 import React from 'react';
-import './Loading.css';
-import Logo from './img/agenda_peques_logo.svg';
 
 const Loading = () => {
   return (
     <div className="loading_container">
-      {/* <img
-        className="loading_img"
-        src={Logo}
-        title="Logo agenda peques"
-        alt="Logo agenda peques"
-      /> */}
       <svg
         className="loading_img"
         width="100%"
         height="100%"
         viewBox="0 0 2481 2481"
         version="1.1"
-        // xmlns="http://www.w3.org/2000/svg"
-        // xmlns:xlink="http://www.w3.org/1999/xlink"
-        // xml:space="preserve"
-        // xmlns:serif="http://www.serif.com/"
         style={{
           fillRule: 'evenodd',
           clipRule: 'evenodd',

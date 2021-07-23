@@ -1,17 +1,20 @@
-import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
-import "./SignUp.css";
-import IconReset from "../components/img/IconReset.js";
-import { signUp } from "../utils/api";
-import storage from "../utils/localStorage";
+import React, { useEffect, useState } from "react";
+import { useRouter}from "next/router";
+import Link from "next/link";
+import IconReset from "components/icons/IconReset.js";
+import { signUp } from "utils/api";
+import storage from "utils/localStorage";
+import Head from 'next/head';
+import useUser from 'hooks/useUser.js'
 
-const SignIn = ({ setUserData }) => {
+const SignUp = () => {
+  const {register} = useUser()
   // eslint-disable-next-line no-unused-vars
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  let history = useHistory();
+  let history = useRouter();
 
   //añadir nombre usuario?
   function handleUserName(ev) {
@@ -30,20 +33,10 @@ const SignIn = ({ setUserData }) => {
   function handleFormSignUp(ev) {
     ev.preventDefault();
     if (password === confirmPassword) {
-      signUp(userName, password)
-        .then((user) => {
-          console.log(user);
-          const userData = {
-            email: user.email,
-            id: user.id,
-          };
-
-          setUserData(userData);
-          storage.setUser(userData);
-
-          history.push("/");
-        })
-        .catch((error) => console.log(error));
+      register({userName, password}).then(() => {
+        history.push("/")
+      })
+      .catch((error) => console.log(error));
     }
   }
 
@@ -52,8 +45,14 @@ const SignIn = ({ setUserData }) => {
 
   return (
     <>
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <IconReset className="reset-Info-SignUp" />
+      <Head>
+        <title>Agenda Peques - Crear nueva cuenta</title>
+        <meta name="description" content="Crea una cuenta para disfrutar de todos los servicios que te ofrece la página de Agenda Peques" />
+      </Head>
+      <Link href="/">
+        <a style={{ textDecoration: "none" }}>
+          <IconReset className="reset-Info-SignUp" />
+        </a>
       </Link>
       <div className="signUp">
         <div className="sigIn_form">
@@ -105,4 +104,4 @@ const SignIn = ({ setUserData }) => {
   );
 };
 
-export default SignIn;
+export default SignUp;

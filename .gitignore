@@ -42,3 +42,4 @@ public/workbox-*.js
 .eslintrc.js
 .eslintignore
 
+.next

@@ -1,5 +1,4 @@
 import React from 'react';
-// import './IconReset.css';
 
 const IconReset = ({ className }) => {
   return (

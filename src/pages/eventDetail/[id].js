@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import "./InfoDetailEvent.css";
-import IconCalendar from "../components/img/IconCalendar.js";
-import IconClock from "../components/img/IconClock.js";
-import IconLocation from "../components/img/IconLocation.js";
-import IconLink from "../components/img/IconLink.js";
-import IconZoomIn from "../components/img/IconZoomIn.js";
-import IconTarget from "../components/img/IconTarget.js";
-import IconReset from "../components/img/IconReset.js";
-import { formatDate } from "../utils/tools";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {useRouter} from 'next/router'
+import IconCalendar from "components/icons/IconCalendar.js";
+import IconClock from "components/icons/IconClock.js";
+import IconLocation from "components/icons/IconLocation.js";
+import IconLink from "components/icons/IconLink.js";
+import IconZoomIn from "components/icons/IconZoomIn.js";
+import IconTarget from "components/icons/IconTarget.js";
+import IconReset from "components/icons/IconReset.js";
+import { formatDate } from "utils/tools";
 
-import { getEventDetails } from "../utils/api";
+import { getEventDetails } from "utils/api";
 
 const InfoDetailEvent = () => {
+  const { id } = useRouter().query
   const [event, setEvent] = useState({});
 
-  const { id } = useParams();
-  console.log({ id });
-
   useEffect(() => {
+    if (typeof id === "undefined") {
+      return;
+    }
+
     getEventDetails(id).then(({ data }) => setEvent(data[0]));
   }, [id]);
 
   const age = event.age ? event.age : "- -";
   const city = event.city ? event.city : "- -";
-  const address = event.address ? event.address : "- - ";
+  //const address = event.address ? event.address : "- - ";
   const information = event.info ? event.info : "- -";
   const url = event.url ? event.url : "- -";
   const hour = event.hour || "- -";
@@ -35,11 +37,11 @@ const InfoDetailEvent = () => {
   return (
     <div className="info_detail_container">
       <Link
-        to="/"
-        style={{ textDecoration: "none" }}
-        className="info_detail_reset"
+        href="/"
       >
+        <a style={{ textDecoration: "none" }} className="info_detail_reset">
         <IconReset />
+        </a>
       </Link>
 
       <div className="info_detail">

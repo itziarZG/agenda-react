@@ -1,10 +1,9 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Link from 'next/link'
 import storage from '../utils/localStorage';
-import './Header.css';
 
-const Header = ({ userData }) => {
-  const history = useHistory();
+const Header = ({ userData = '' }) => {
+  const history = useRouter();
 
   function logout() {
     storage.wipeUser();
@@ -14,10 +13,10 @@ const Header = ({ userData }) => {
   function renderSign() {
     return (
       <>
-        <Link to="/signIn">
+        <Link href="/signIn">
           <button className="header_signIn btn">Sign in</button>
         </Link>
-        <Link to="/signUp">
+        <Link href="/signUp">
           <button className="header_signUp btn">Sign up</button>
         </Link>
       </>
@@ -30,17 +29,20 @@ const Header = ({ userData }) => {
         <button className="header_log_out" onClick={logout}>
           Sign out
         </button>
-        <Link to="createEvents">
+        <Link href="/createEvents">
           <button className="header_create_event btn">Crear evento</button>
         </Link>
       </>
     );
   }
+
   return (
     <>
       <div className="header">
-        <Link className="header_logo_container" to="/">
-          <div className="header_logo"></div>
+        <Link href="/">
+          <a className="header_logo_container">
+            <div className="header_logo"></div>
+          </a>
         </Link>
 
         {userData === '' ? renderSign() : renderLogueado()}

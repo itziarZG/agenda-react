@@ -1,5 +1,5 @@
 import React from 'react';
-import './EmptyEvents.css';
+
 const EmptyEvents = () => {
   return (
     <div className="empty_events_container">

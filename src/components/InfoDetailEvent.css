@@ -121,7 +121,7 @@
 
 .info_cat_img {
   height: 100px;
-  background-image: url("./img/cat-info.svg");
+  background-image: url("/img/cat-info.svg");
   background-repeat: no-repeat;
   background-position: right;
   margin-top: 10px;

@@ -1,25 +1,25 @@
 import React from "react";
-import "./Events.css";
-import { Link, useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
+import Link from 'next/link'
+
 import api from "../utils/api";
 
 import HeaderDate from "./HeaderDate.js";
-import IconDelete from "./img/IconDelete.js";
-import IconEdit from "./img/IconEdit";
+import IconDelete from "./icons/IconDelete.js";
+import IconEdit from "./icons/IconEdit";
 
 const Events = ({ events, date, userId }) => {
-  let history = useHistory();
+  const history = useRouter();
 
   async function deleteEvents(id) {
     await api.deleteEvent(id);
-
     history.go(0);
   }
 
   return (
     <div>
       <HeaderDate date={date} />
-      {events[date].map((ev) => {
+      {events[date].map(ev => {
         // const time = ev.hour ? ev.hour.slice(0, -3) + "h" : null;
         return (
           <div className="event" key={ev.id}>
@@ -32,7 +32,7 @@ const Events = ({ events, date, userId }) => {
               <div className="more_delete_btns">
                 {userId === ev.user_id && (
                   <div>
-                    <Link to={{ pathname: "/createEvents", state: { ev } }}>
+                    <Link href={{ pathname: "/createEvents", state: { ev } }}>
                       <IconEdit className="icon_edit" />
                     </Link>
                     <span onClick={() => deleteEvents(ev.id)}>
@@ -41,8 +41,10 @@ const Events = ({ events, date, userId }) => {
                   </div>
                 )}
               </div>
-              <Link className="more_info" to={`/eventDetail/${ev.id}`}>
+              <Link href={`/eventDetail/${ev.id}`}>
+                <a className='more_info'>
                 Info
+                </a>
               </Link>
             </div>
           </div>
