@@ -1,11 +1,17 @@
-import "./Info.css";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 
 export default function Info() {
   return (
+    <> 
+    <Head>
+      <title>Agenda Peques - Info del proyecto</title>
+      <meta name="description" content="Información del porqué de esta página Agenda Peques" />
+    </Head>
     <div className="info__texts">
-      <Link className="info__link" to="/">
-        Volver a Eventos
+      <Link href="/">
+        <a className="info__link">
+          Volver a Eventos
+        </a>
       </Link>
 
       <p className="info__texts__text">
@@ -55,5 +61,6 @@ export default function Info() {
         también eres más que bienvenid@.
       </p>
     </div>
+    </>
   );
 }

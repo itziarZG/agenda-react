@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
-import "./SignIn.css";
-import IconReset from "../components/img/IconReset.js";
-import { signIn } from "../utils/api";
-import storage from "../utils/localStorage";
+import { useRouter } from "next/router";
+import Link from 'next/link'
+import IconReset from "components/icons/IconReset.js";
+import { signIn } from "utils/api";
+import storage from "utils/localStorage";
+import Head from 'next/head'
 
 const SignIn = ({ setUserData }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  let history = useHistory();
+  let history = useRouter();
 
   function handleUserName(ev) {
     setUserName(ev.target.value);
@@ -44,7 +45,11 @@ const SignIn = ({ setUserData }) => {
 
   return (
     <>
-      <Link to="/" style={{ textDecoration: "none" }}>
+      <Head>
+        <title>Agenda Peques - Iniciar sesión</title>
+        <meta name="description" content="Inicia sesión en la página más dicharachera para ver los eventos para niños y niñas en Ibiza" />
+      </Head>
+      <Link href="/" style={{ textDecoration: "none" }}>
         <IconReset className="reset_info_signIn" />
       </Link>
       <div className="signIn">

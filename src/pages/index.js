@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { getEventsFromDate } from "../utils/api";
-import "./ListEvents.css";
-import Loading from "./Loading.js";
+import { useState, useEffect } from "react";
+import Head from 'next/head'
 
-import { getTodayDate, groupByDate, sortObject } from "../utils/tools";
-import Events from "./Events.js";
-import EmptyEvents from "./EmptyEvents.js";
+import { getEventsFromDate } from "utils/api";
+import { getTodayDate, groupByDate, sortObject } from "utils/tools";
+import EmptyEvents from "components/EmptyEvents.js";
+import Events from "components/Events.js";
+import Loading from "components/Loading.js";
+import useUser from 'hooks/useUser.js'
 
-const ListEvents = ({ userId }) => {
+const LOADING_STATES = {
+  empty: 'empty',
+  loading: 'loading',
+}
+
+const ListEvents = () => {
+  const {userData: {userId}} = useUser()
   const [events, setEvents] = useState([]);
-  const [status, setStatus] = useState("loading");
+  const [status, setStatus] = useState(LOADING_STATES.loading);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -21,11 +28,8 @@ const ListEvents = ({ userId }) => {
         const sorted = sortObject(grouped);
         setEvents(sorted);
 
-        if (data.length <= 0) {
-          setStatus("empty");
-        } else {
-          setStatus("loaded");
-        }
+        const newStatus = data.length <= 0 ? "empty" : "loaded";
+        setStatus(newStatus)
       } else {
         setErrorMessage("Ha habido algún error. Vuelve a cargar la página. ");
       }
@@ -43,15 +47,20 @@ const ListEvents = ({ userId }) => {
     });
   }
 
-  if (status === "loading") {
+  if (status === LOADING_STATES.loading) {
     return <Loading />;
   }
 
-  if (status === "empty") {
+  if (status === LOADING_STATES.empty) {
     return <EmptyEvents />;
   }
 
   return (
+    <>
+    <Head>
+      <title>Agenda Peques</title>
+      <meta name="description" content="Agenda de actividades infantiles en Ibiza" />
+    </Head>
     <div className="eventsTime">
       <div className="event_list_2">
         <div className="img-globe-box2"></div>
@@ -63,6 +72,7 @@ const ListEvents = ({ userId }) => {
       )}
       <div className="events">{renderEvents()}</div>
     </div>
+    </>
   );
 };
 

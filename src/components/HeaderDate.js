@@ -1,33 +1,34 @@
 import React from 'react';
-import './HeaderDate.css';
-const HeaderDate = ({ date }) => {
-  let months = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre',
-  ];
 
-  let weekdays = [
-    'Domingo',
-    'Lunes',
-    'Martes',
-    'Miercoles',
-    'Jueves',
-    'Viernes',
-    'Sabado',
-  ];
+const MONTHS = [
+  'Enero',
+  'Febrero',
+  'Marzo',
+  'Abril',
+  'Mayo',
+  'Junio',
+  'Julio',
+  'Agosto',
+  'Septembre',
+  'Octubre',
+  'Noviembre',
+  'Diciembre',
+];
+
+const WEEKDAYS = [
+  'Domingo',
+  'Lunes',
+  'Martes',
+  'Miercoles',
+  'Jueves',
+  'Viernes',
+  'Sabado',
+];
+
+const HeaderDate = ({ date }) => {
   let dateObject = new Date(date);
-  let month = months[dateObject.getMonth()];
-  let weekday = weekdays[dateObject.getDay()];
+  let month = MONTHS[dateObject.getMonth()];
+  let weekday = WEEKDAYS[dateObject.getDay()];
   let day = dateObject.getDate();
 
   return (

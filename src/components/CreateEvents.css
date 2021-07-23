@@ -121,7 +121,7 @@
   .create-event-img {
     width: 25%;
     height: 100vh;
-    background-image: url("./img/img-create-event-2.svg");
+    background-image: url("/img/img-create-event-2.svg");
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 20px;

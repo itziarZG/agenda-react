@@ -113,7 +113,7 @@
 .signIn_img_rocket {
   width: 70%;
   margin-top: 50px;
-  background-image: url('./img/rocket.svg');
+  background-image: url('/img/rocket.svg');
   height: 100%;
   background-repeat: no-repeat;
   /* background-color: chocolate; */
@@ -144,7 +144,7 @@
 
   .signIn_img_rocket {
     width: 70%;
-    background-image: url('./img/cat.svg');
+    background-image: url('/img/cat.svg');
     background-repeat: no-repeat;
     background-position: center;
 
