@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Link from 'next/link'
+import Link from "next/link";
 
 import api from "../utils/api";
 
@@ -19,7 +19,7 @@ const Events = ({ events, date, userId }) => {
   return (
     <div>
       <HeaderDate date={date} />
-      {events[date].map(ev => {
+      {events[date].map((ev) => {
         // const time = ev.hour ? ev.hour.slice(0, -3) + "h" : null;
         return (
           <div className="event" key={ev.id}>
@@ -42,9 +42,7 @@ const Events = ({ events, date, userId }) => {
                 )}
               </div>
               <Link href={`/eventDetail/${ev.id}`}>
-                <a className='more_info'>
-                Info
-                </a>
+                <a className="more_info">Info</a>
               </Link>
             </div>
           </div>

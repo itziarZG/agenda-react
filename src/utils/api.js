@@ -38,6 +38,7 @@ export function getEventsFromDate(date) {
 }
 
 export function signIn(email, password) {
+  console.log({ email });
   return supabase.auth.signIn({
     email,
     password,

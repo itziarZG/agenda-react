@@ -1,8 +1,9 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link'
-import storage from '../utils/localStorage';
+import { useRouter } from "next/router";
+import Link from "next/link";
+import storage from "../utils/localStorage";
+import userData from "hooks/useUser.js";
 
-const Header = ({ userData = '' }) => {
+const Header = () => {
   const history = useRouter();
 
   function logout() {
@@ -45,7 +46,7 @@ const Header = ({ userData = '' }) => {
           </a>
         </Link>
 
-        {userData === '' ? renderSign() : renderLogueado()}
+        {userData === "" ? renderSign() : renderLogueado()}
       </div>
     </>
   );

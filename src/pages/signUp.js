@@ -1,53 +1,52 @@
-import React, { useEffect, useState } from "react";
-import { useRouter}from "next/router";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import IconReset from "components/icons/IconReset.js";
-import { signUp } from "utils/api";
-import storage from "utils/localStorage";
-import Head from 'next/head';
-import useUser from 'hooks/useUser.js'
+
+import Head from "next/head";
+import useUser from "hooks/useUser.js";
+import useField from "hooks/useField.js";
 
 const SignUp = () => {
-  const {register} = useUser()
-  // eslint-disable-next-line no-unused-vars
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const { register } = useUser();
+  const userNameField = useField({ type: "text", name: "username" });
+  const userPasswField = useField({ type: "password", name: "userpassw" });
+  const confirmPasswField = useField({
+    type: "password",
+    name: "confirmpassw",
+  });
+
+  const [error, setErrorMessage] = useState("");
 
   let history = useRouter();
 
-  //añadir nombre usuario?
-  function handleUserName(ev) {
-    //comprobar mail válido
-    setUserName(ev.target.value);
-  }
-
-  function handlePassword(ev) {
-    setPassword(ev.target.value);
-  }
-
-  function handleConfirmPassword(ev) {
-    setConfirmPassword(ev.target.value);
-  }
-
   function handleFormSignUp(ev) {
     ev.preventDefault();
-    if (password === confirmPassword) {
-      register({userName, password}).then(() => {
-        history.push("/")
-      })
-      .catch((error) => console.log(error));
-    }
+    console.log({ userPasswField }, { userNameField });
+    if (userPasswField.value === confirmPasswField.value) {
+      console.log({ userNameField, userPasswField });
+      register(userNameField.value, userPasswField.value)
+        .then(() => {
+          history.push("/");
+        })
+        .catch((error) => setErrorMessage(error.msg));
+    } else setErrorMessage("Passwords Diferentes");
   }
 
-  const disableButton =
-    !userName || userName.length < 3 || !password || !confirmPassword;
+  // const disableButton =
+  //   !userNameField ||
+  //   userNameField.length < 3 ||
+  //   !userPasswField ||
+  //   !confirmPassword;
 
   return (
     <>
       <Head>
         <title>Agenda Peques - Crear nueva cuenta</title>
-        <meta name="description" content="Crea una cuenta para disfrutar de todos los servicios que te ofrece la página de Agenda Peques" />
+        <meta
+          name="description"
+          content="Crea una cuenta para disfrutar de todos los servicios que te ofrece la página de Agenda Peques"
+        />
       </Head>
       <Link href="/">
         <a style={{ textDecoration: "none" }}>
@@ -62,39 +61,34 @@ const SignUp = () => {
               Email Address
             </label>
             <input
-              type="text"
-              id="name"
+              {...userNameField}
               placeholder="Enter your name"
               className="form_input"
-              onChange={handleUserName}
             />
             <label htmlFor="name" className="form_label">
               Password
             </label>
             <input
-              type="password"
-              id="password"
+              {...userPasswField}
               placeholder="Enter your password"
               className="form_input"
-              onChange={handlePassword}
             />
             <label htmlFor="confirmPassword" className="form_label">
               Confirm password
             </label>
             <input
-              type="password"
-              id="confirmPassword"
+              {...confirmPasswField}
               className="form_input"
               placeholder="Enter your password"
-              onChange={handleConfirmPassword}
             />
             <input
               type="submit"
               value="Sign up"
               className="signUp_btn js-SignIn"
-              disabled={disableButton}
+              //disabled={disableButton}
             />
           </form>
+          {error !== "" ? <p style={{ color: "red" }}>{error}</p> : <></>}
         </div>
         <div className="signUp_img">
           <div className="signUp_img_globe"></div>

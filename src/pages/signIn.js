@@ -1,53 +1,40 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import Link from 'next/link'
+import Link from "next/link";
 import IconReset from "components/icons/IconReset.js";
-import { signIn } from "utils/api";
-import storage from "utils/localStorage";
-import Head from 'next/head'
+import Head from "next/head";
+import useUser from "hooks/useUser.js";
+import useField from "hooks/useField.js";
 
-const SignIn = ({ setUserData }) => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+const SignIn = () => {
+  const userNameField = useField({ type: "text", name: "username" });
+  const passwordField = useField({ type: "password", name: "password" });
   const [errorMessage, setErrorMessage] = useState("");
+
+  const {
+    login,
+    // userData: { userId },
+  } = useUser();
   let history = useRouter();
-
-  function handleUserName(ev) {
-    setUserName(ev.target.value);
-  }
-
-  function handlePassword(ev) {
-    setPassword(ev.target.value);
-  }
 
   function handleFormSignIn(ev) {
     ev.preventDefault();
-    signIn(userName, password)
-      .then((resp) => {
-        if (resp.error) {
-          console.log("error");
-          setErrorMessage(resp.error.message);
-          setTimeout(() => setErrorMessage(""), 3000);
-        } else {
-          const userData = {
-            email: resp.user.email,
-            id: resp.user.id,
-            acces_token: resp.data.access_token,
-            //que más necesitaré????
-          };
-          setUserData(userData);
-          storage.setUser(userData);
-          history.push("/");
-        }
+    console.log({ userNameField, passwordField });
+    login(userNameField.value, passwordField.value)
+      .then(() => {
+        history.push("/");
       })
-      .catch((error) => console.error({ error }));
+      .catch((error) => setErrorMessage(error.msg));
   }
 
   return (
     <>
       <Head>
         <title>Agenda Peques - Iniciar sesión</title>
-        <meta name="description" content="Inicia sesión en la página más dicharachera para ver los eventos para niños y niñas en Ibiza" />
+        <meta
+          name="description"
+          content="Inicia sesión en la página más dicharachera para ver los eventos para niños y niñas en Ibiza"
+        />
       </Head>
       <Link href="/" style={{ textDecoration: "none" }}>
         <IconReset className="reset_info_signIn" />
@@ -60,21 +47,17 @@ const SignIn = ({ setUserData }) => {
               Email Address
             </label>
             <input
-              type="text"
-              id="name"
+              {...userNameField}
               placeholder="Enter your name"
               className="form_input"
-              onChange={handleUserName}
             />
             <label htmlFor="name" className="form_label">
               Password
             </label>
             <input
-              type="password"
-              id="password"
+              {...passwordField}
               placeholder="Enter your password"
               className="form_input"
-              onChange={handlePassword}
             />
             <input type="submit" value="Sign in" className="signIn_btn" />
           </form>
