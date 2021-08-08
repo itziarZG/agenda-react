@@ -15,7 +15,7 @@ const SignIn = () => {
     login,
     // userData: { userId },
   } = useUser();
-  let history = useRouter();
+  const history = useRouter();
 
   function handleFormSignIn(ev) {
     ev.preventDefault();
@@ -24,7 +24,10 @@ const SignIn = () => {
       .then(() => {
         history.push("/");
       })
-      .catch((error) => setErrorMessage(error.msg));
+      .catch((error) => {
+        setErrorMessage(error.msg);
+        setTimeout(() => setErrorMessage(""), 3000);
+      });
   }
 
   return (

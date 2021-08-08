@@ -18,7 +18,7 @@ const SignUp = () => {
 
   const [error, setErrorMessage] = useState("");
 
-  let history = useRouter();
+  const history = useRouter();
 
   function handleFormSignUp(ev) {
     ev.preventDefault();
@@ -29,8 +29,15 @@ const SignUp = () => {
         .then(() => {
           history.push("/");
         })
-        .catch((error) => setErrorMessage(error.msg));
-    } else setErrorMessage("Passwords Diferentes");
+        .catch((error) => {
+          setErrorMessage(error.msg);
+          setTimeout(() => setErrorMessage(""), 3000);
+        });
+    } else {
+      setErrorMessage("Passwords Diferentes");
+
+      setTimeout(() => setErrorMessage(""), 3000);
+    }
   }
 
   // const disableButton =
@@ -85,7 +92,7 @@ const SignUp = () => {
               type="submit"
               value="Sign up"
               className="signUp_btn js-SignIn"
-              //disabled={disableButton}
+              // disabled={disableButton}
             />
           </form>
           {error !== "" ? <p style={{ color: "red" }}>{error}</p> : <></>}

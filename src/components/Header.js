@@ -3,7 +3,7 @@ import Link from "next/link";
 import storage from "../utils/localStorage";
 import userData from "hooks/useUser.js";
 
-const Header = () => {
+export default function Header() {
   const history = useRouter();
 
   function logout() {
@@ -50,6 +50,4 @@ const Header = () => {
       </div>
     </>
   );
-};
-
-export default Header;
+}

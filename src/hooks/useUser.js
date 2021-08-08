@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import storage from "utils/localStorage.js";
 import { signUp, signIn } from "utils/api";
 
@@ -36,8 +36,8 @@ export default function useUser() {
         setUserData(userData);
         storage.setUser(userData);
       } else {
-        return error;
-        //Error mostrarlo con toast
+        return resp.error;
+        // Error mostrarlo con toast
       }
     });
   };

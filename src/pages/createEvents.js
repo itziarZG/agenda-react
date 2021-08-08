@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-import { useRouter, Link } from "next/router";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { createEvent } from "utils/api";
 import IconReset from "components/icons/IconReset.js";
 import Head from "next/head";
+import useField from "hooks/useField.js";
+import useUser from "hooks/useUser.js";
 
-const CreateEvents = ({ userId }) => {
-  let location = useLocation();
-  const errorMessageField = useField({ type: "text", name: "errorMessage" });
+export default function CreateEvents() {
+  // const location = useLocation();
+  const history = useRouter();
+  const { userData } = useUser();
+  console.log({ userData });
+  const [error, setErrorMessage] = useState("");
   const eventImgField = useField({ type: "text", name: "eventImg" });
   const eventNameField = useField({ type: "text", name: "eventName" });
   const eventLinkField = useField({ type: "text", name: "eventLink" });
-  const eventAgeField = useField({ type: number, name: "eventAge" });
+  const eventAgeField = useField({ type: "number", name: "eventAge" });
   const eventCityField = useField({ type: "text", name: "eventCity" });
   const eventInformationField = useField({
     type: "text",
@@ -18,20 +24,20 @@ const CreateEvents = ({ userId }) => {
   });
   const eventHourField = useField({ type: "number", name: "eventHour" });
   const eventDateField = useField({ type: "date", name: "eventDate" });
-  let history = useRouter();
+  const eventUrlField = useField({ type: "text", name: "eventUrl" });
 
   const handleFormEvent = (ev) => {
     ev.preventDefault();
     const eventData = {
-      title: eventNameField,
-      image: eventImgField,
-      date: eventDateField,
-      url: eventLinkField,
-      age: eventAgeField,
-      city: eventCityField,
-      info: eventInformationField,
-      hour: eventHourField,
-      user_id: userId,
+      title: eventNameField.value,
+      image: eventImgField.value,
+      date: eventDateField.value,
+      url: eventLinkField.value,
+      age: eventAgeField.value,
+      city: eventCityField.value,
+      info: eventInformationField.value,
+      hour: eventHourField.value,
+      user_id: userData.id,
     };
     console.log({ eventData });
     createEvent(eventData)
@@ -46,53 +52,11 @@ const CreateEvents = ({ userId }) => {
       })
       .catch((error) => console.log(error));
 
-    history.push("/events/" + data[0].id);
+    // history.push("/events/" + data[0].id);
   };
-
-  // const [errorMessage, setErrorMessage] = useState("");
-  // const [eventImg
-  // const [eventDate, setEventDate] = useState(new Date());
-  // const [eventLink, setEventLink] = useState("");
-  // const [eventName, setEventName] = useState("");
-  // const [eventAge, setEventAge] = useState("");
-  // const [eventCity, setEventCity] = useState("");
-  // const [eventInformation, setEventInformation] = useState("");
-
-  // const [eventHour, setEventHour] = useState("");
-
-  // function handleEventImg(ev) {
-  //   setEventImg(ev.target.value);
-  // }
-
-  // function handleEventDate(ev) {
-  //   setEventDate(ev.target.value);
-  // }
-
-  // function handleEventLink(ev) {
-  //   setEventLink(ev.target.value);
-  // }
-
-  // function handleEventName(ev) {
-  //   setEventName(ev.target.value);
-  // }
-
-  // function handleEventAge(ev) {
-  //   setEventAge(ev.target.value);
-  // }
-
-  // function handleEventCity(ev) {
-  //   setEventCity(ev.target.value);
-  // }
-
-  // function handleEventInformation(ev) {
-  //   setEventInformation(ev.target.value);
-  // }
-
-  // function handleEventHour(ev) {
-  //   setEventHour(ev.target.value);
-  // }
-
-  const isSubmitDisabled = !eventName || !eventHour || !eventDate;
+  console.log("ruta", history.asPath);
+  const isSubmitDisabled =
+    !eventNameField.value || !eventHourField.value || !eventDateField.value;
 
   return (
     <>
@@ -128,9 +92,8 @@ const CreateEvents = ({ userId }) => {
             </label>
             <input
               className="event_form_input"
-              type="date"
               id="start"
-              name="trip-start"
+              name="start"
               placeholder={Date.now()}
               min={Date.now()}
               max="2021-12-31"
@@ -141,51 +104,37 @@ const CreateEvents = ({ userId }) => {
             </label>
             <input
               className="event_form_input"
-              type="text"
               id="hour"
               placeholder="Ej: 17:00"
               {...eventHourField}
               required
             ></input>
-            <label className="event_form_label" htmlFor="text">
+            <label className="event_form_label" htmlFor="link">
               Link del evento
             </label>
             <input
-              type="text"
-              id="name"
+              id="link"
               className="event_form_input"
-              placeholder="https://margamartinez.com/"
+              placeholder="http://agendapequeseivissa.tk"
               {...eventLinkField}
             />
             <label htmlFor="name" className="event_form_label">
               Nombre del Evento
             </label>
             <input
-              type="text"
               id="name"
               className="event_form_input"
               {...eventNameField}
               required
             />
-            <label htmlFor="name" className="event_form_label">
+            <label htmlFor="age" className="event_form_label">
               Edad recomendada
             </label>
-            <input
-              type="text"
-              id="name"
-              className="event_form_input"
-              {...eventAgeField}
-            />
-            <label htmlFor="name" className="event_form_label">
+            <input id="age" className="event_form_input" {...eventAgeField} />
+            <label htmlFor="city" className="event_form_label">
               Población
             </label>
-            <input
-              type="text"
-              id="name"
-              className="event_form_input"
-              onChange={handleEventCity}
-              value={eventCity}
-            />
+            <input id="city" className="event_form_input" {...eventCityField} />
             <label htmlFor="textarea" className="event_form_label">
               Información adicional:
             </label>
@@ -195,14 +144,10 @@ const CreateEvents = ({ userId }) => {
               name="textarea"
               {...eventInformationField}
             ></textarea>
-            {errorMessage !== "" ? (
-              <p style={{ color: "red" }}>{errorMessage}</p>
-            ) : (
-              <></>
-            )}
+            {error !== "" ? <p style={{ color: "red" }}>{error}</p> : <></>}
             <input
               type="submit"
-              value={location?.state?.ev?.id ? "Editar evento" : "Crear evento"}
+              value="Crear evento"
               className="event_btn"
               disabled={isSubmitDisabled}
             />
@@ -211,6 +156,4 @@ const CreateEvents = ({ userId }) => {
       </div>
     </>
   );
-};
-
-export default CreateEvents;
+}
