@@ -8,7 +8,7 @@ import useField from "hooks/useField.js";
 import useUser from "hooks/useUser.js";
 
 export default function CreateEvents() {
-  // const location = useLocation();
+  const { id } = useRouter().query;
   const history = useRouter();
   const { userData } = useUser();
   console.log({ userData });
@@ -47,14 +47,12 @@ export default function CreateEvents() {
           setErrorMessage(resp.error.message);
           setTimeout(() => setErrorMessage(""), 3000);
         } else if (resp.status === 201) {
-          history.push("/events");
+          history.push("/");
         }
       })
       .catch((error) => console.log(error));
-
-    // history.push("/events/" + data[0].id);
   };
-  console.log("ruta", history.asPath);
+
   const isSubmitDisabled =
     !eventNameField.value || !eventHourField.value || !eventDateField.value;
 
@@ -147,7 +145,7 @@ export default function CreateEvents() {
             {error !== "" ? <p style={{ color: "red" }}>{error}</p> : <></>}
             <input
               type="submit"
-              value="Crear evento"
+              value={id ? "Modificat evento" : "Crear evento"}
               className="event_btn"
               disabled={isSubmitDisabled}
             />
