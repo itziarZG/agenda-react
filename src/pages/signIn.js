@@ -32,8 +32,15 @@ const SignIn = () => {
       <Head>
         <title>Agenda Peques - Iniciar sesión</title>
         <meta
+          property="og:title"
+          content="Agenda Peques - Iniciar sesión"
+          key="title"
+        />
+        <meta
+          property="og:description"
           name="description"
           content="Inicia sesión en la página más dicharachera para ver los eventos para niños y niñas en Ibiza"
+          key="description"
         />
       </Head>
       <Link href="/" style={{ textDecoration: "none" }}>
