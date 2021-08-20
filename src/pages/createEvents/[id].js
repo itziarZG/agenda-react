@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { createEvent } from "utils/api";
+import { createEvent, getEventDetails } from "utils/api";
 import IconReset from "components/icons/IconReset.js";
 import Head from "next/head";
 import useField from "hooks/useField.js";
@@ -10,8 +10,7 @@ import useUser from "hooks/useUser.js";
 export default function CreateEvents() {
   const { id } = useRouter().query;
   const history = useRouter();
-  const { userData } = useUser();
-  console.log({ userData });
+  const { userData: userId } = useUser();
   const [error, setErrorMessage] = useState("");
   const eventImgField = useField({ type: "text", name: "eventImg" });
   const eventNameField = useField({ type: "text", name: "eventName" });
@@ -25,10 +24,41 @@ export default function CreateEvents() {
   const eventHourField = useField({ type: "number", name: "eventHour" });
   const eventDateField = useField({ type: "date", name: "eventDate" });
   const eventUrlField = useField({ type: "text", name: "eventUrl" });
+  const [eventData, setEventData] = useState({
+    title: "",
+    image: "",
+    date: "",
+    url: "",
+    age: 0,
+    city: "",
+    info: "",
+    hour: "",
+    user_id: userId,
+  });
+
+  useEffect(() => {
+    if (id)
+      getEventDetails(id).then(({ data }) => {
+        console.log(data[0]);
+        setEventData({
+          title: data[0].title,
+          image: data[0].image,
+          date: data[0].date,
+          url: data[0].url,
+          age: data[0].age,
+          city: data[0].city,
+          info: data[0].info,
+          hour: data[0].hour,
+          user_id: userId,
+        });
+        console.log({ eventData });
+      });
+    console.log({ eventData });
+  }, [id]);
 
   const handleFormEvent = (ev) => {
     ev.preventDefault();
-    const eventData = {
+    setEventData({
       title: eventNameField.value,
       image: eventImgField.value,
       date: eventDateField.value,
@@ -37,8 +67,8 @@ export default function CreateEvents() {
       city: eventCityField.value,
       info: eventInformationField.value,
       hour: eventHourField.value,
-      user_id: userData.id,
-    };
+      user_id: userId,
+    });
     console.log({ eventData });
     createEvent(eventData)
       .then((resp) => {
@@ -52,7 +82,9 @@ export default function CreateEvents() {
       })
       .catch((error) => console.log(error));
   };
-
+  const updateEvent = () => {
+    console.log("updating", eventData);
+  };
   const isSubmitDisabled =
     !eventNameField.value || !eventHourField.value || !eventDateField.value;
 
@@ -65,8 +97,10 @@ export default function CreateEvents() {
           content="Crea un evento para compartirla con todas las personas suscritas en la página de Agenda Peques"
         />
       </Head>
-      <Link href="/" style={{ textDecoration: "none" }}>
-        <IconReset className="reset-Info-createEvent" />
+      <Link href="/">
+        <a style={{ textDecoration: "none" }}>
+          <IconReset className="reset-Info-createEvent" />
+        </a>
       </Link>
       <div className="create-event-box">
         <div className="box-create-event-img">
@@ -143,12 +177,22 @@ export default function CreateEvents() {
               {...eventInformationField}
             ></textarea>
             {error !== "" ? <p style={{ color: "red" }}>{error}</p> : <></>}
-            <input
-              type="submit"
-              value={id ? "Modificat evento" : "Crear evento"}
-              className="event_btn"
-              disabled={isSubmitDisabled}
-            />
+            {id ? (
+              <input
+                type="submit"
+                value="Modificar evento"
+                className="event_btn"
+                disabled={isSubmitDisabled}
+              />
+            ) : (
+              <input
+                type="button"
+                onClick={updateEvent()}
+                value="Crear evento"
+                className="event_btn"
+                disabled={isSubmitDisabled}
+              />
+            )}
           </form>
         </div>
       </div>

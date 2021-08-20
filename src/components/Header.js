@@ -1,24 +1,27 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import storage from "../utils/localStorage";
-import userData from "hooks/useUser.js";
+import useUser from "hooks/useUser.js";
 
 export default function Header() {
   const history = useRouter();
-
+  const {
+    userData: { userId },
+  } = useUser();
+  console.log({ userId });
   function logout() {
     storage.wipeUser();
-    history.go(0);
+    history.replace("/");
   }
 
   function renderSign() {
     return (
       <>
         <Link href="/signIn">
-          <button className="header_signIn btn">Sign in</button>
+          <a className="header_signIn btn">Log in</a>
         </Link>
         <Link href="/signUp">
-          <button className="header_signUp btn">Sign up</button>
+          <a className="header_signUp btn">Register</a>
         </Link>
       </>
     );
@@ -31,7 +34,7 @@ export default function Header() {
           Sign out
         </button>
         <Link href="/createEvents">
-          <button className="header_create_event btn">Crear evento</button>
+          <a className="header_create_event btn">Crear evento</a>
         </Link>
       </>
     );
@@ -46,7 +49,7 @@ export default function Header() {
           </a>
         </Link>
 
-        {userData === "" ? renderSign() : renderLogueado()}
+        {userId === null ? renderSign() : renderLogueado()}
       </div>
     </>
   );

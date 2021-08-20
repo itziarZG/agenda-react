@@ -1,24 +1,27 @@
 import { useState, useEffect } from "react";
-import Head from 'next/head'
+import Head from "next/head";
 
 import { getEventsFromDate } from "utils/api";
 import { getTodayDate, groupByDate, sortObject } from "utils/tools";
 import EmptyEvents from "components/EmptyEvents.js";
 import Events from "components/Events.js";
 import Loading from "components/Loading.js";
-import useUser from 'hooks/useUser.js'
+import useUser from "hooks/useUser.js";
 
 const LOADING_STATES = {
-  empty: 'empty',
-  loading: 'loading',
-}
+  empty: "empty",
+  loading: "loading",
+};
 
 const ListEvents = () => {
-  const {userData: {userId}} = useUser()
+  const {
+    userData: { userId },
+  } = useUser();
+  const { userData } = useUser();
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState(LOADING_STATES.loading);
   const [errorMessage, setErrorMessage] = useState("");
-
+  console.log({ userData });
   useEffect(() => {
     const today = getTodayDate();
     getEventsFromDate(today).then((resp) => {
@@ -29,7 +32,7 @@ const ListEvents = () => {
         setEvents(sorted);
 
         const newStatus = data.length <= 0 ? "empty" : "loaded";
-        setStatus(newStatus)
+        setStatus(newStatus);
       } else {
         setErrorMessage("Ha habido algún error. Vuelve a cargar la página. ");
       }
@@ -39,6 +42,7 @@ const ListEvents = () => {
   function renderEvents() {
     const dates = Object.keys(events);
     return dates.map((date) => {
+      console.log({ userId });
       return (
         <div key={date} className="event_list_1">
           <Events events={events} date={date} userId={userId} />
@@ -57,21 +61,24 @@ const ListEvents = () => {
 
   return (
     <>
-    <Head>
-      <title>Agenda Peques</title>
-      <meta name="description" content="Agenda de actividades infantiles en Ibiza" />
-    </Head>
-    <div className="eventsTime">
-      <div className="event_list_2">
-        <div className="img-globe-box2"></div>
+      <Head>
+        <title>Agenda Peques</title>
+        <meta
+          name="description"
+          content="Agenda de actividades infantiles en Ibiza"
+        />
+      </Head>
+      <div className="eventsTime">
+        <div className="event_list_2">
+          <div className="img-globe-box2"></div>
+        </div>
+        {errorMessage !== "" ? (
+          <p style={{ color: "red" }}>{errorMessage}</p>
+        ) : (
+          <></>
+        )}
+        <div className="events">{renderEvents()}</div>
       </div>
-      {errorMessage !== "" ? (
-        <p style={{ color: "red" }}>{errorMessage}</p>
-      ) : (
-        <></>
-      )}
-      <div className="events">{renderEvents()}</div>
-    </div>
     </>
   );
 };

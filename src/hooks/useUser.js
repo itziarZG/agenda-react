@@ -7,12 +7,13 @@ export default function useUser() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("timekids-user"));
+
     if (user) {
       setUserData(user);
     }
   }, []);
 
-  console.log("useUser executed");
+  // console.log("useUser executed");
 
   const register = (userName, password) => {
     console.log("register", { userName, password });
@@ -20,7 +21,7 @@ export default function useUser() {
       if (resp.user) {
         console.log("en signup", { resp });
         const { email, id } = resp.user;
-        const userData = { id, email };
+        const userData = { userId: id, email };
         setUserData(userData);
         storage.setUser(userData);
       } else return resp.error;
@@ -32,7 +33,7 @@ export default function useUser() {
       if (resp.data != null) {
         console.log("en signIn", { resp });
         const { email, id } = resp.user;
-        const userData = { id, email };
+        const userData = { userId: id, email };
         setUserData(userData);
         storage.setUser(userData);
       } else {
@@ -41,7 +42,7 @@ export default function useUser() {
       }
     });
   };
-
+  // console.log({ userData });
   return {
     register,
     login,

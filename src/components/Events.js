@@ -32,8 +32,10 @@ const Events = ({ events, date, userId }) => {
               <div className="more_delete_btns">
                 {userId === ev.user_id && (
                   <div>
-                    <Link href={{ pathname: "/createEvents", state: { ev } }}>
-                      <IconEdit className="icon_edit" />
+                    <Link href={`createEvents/${ev.id}`}>
+                      <a>
+                        <IconEdit className="icon_edit" />
+                      </a>
                     </Link>
                     <span onClick={() => deleteEvents(ev.id)}>
                       <IconDelete className="icon_delete" />

@@ -39,8 +39,10 @@ const SignIn = () => {
           content="Inicia sesión en la página más dicharachera para ver los eventos para niños y niñas en Ibiza"
         />
       </Head>
-      <Link href="/" style={{ textDecoration: "none" }}>
-        <IconReset className="reset_info_signIn" />
+      <Link href="/">
+        <a style={{ textDecoration: "none" }}>
+          <IconReset className="reset_info_signIn" />
+        </a>
       </Link>
       <div className="signIn">
         <div className="sigIn_form">
