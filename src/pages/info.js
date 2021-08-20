@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Info() {
   return (
@@ -7,8 +7,15 @@ export default function Info() {
       <Head>
         <title>Agenda Peques - Info del proyecto</title>
         <meta
+          property="og:title"
+          content="Agenda Peques - Info del proyecto"
+          key="title"
+        />
+        <meta
+          property="og:description"
           name="description"
           content="Información del porqué de esta página Agenda Peques"
+          key="description"
         />
       </Head>
       <div className="info__texts">

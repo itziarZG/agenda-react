@@ -17,11 +17,11 @@ const ListEvents = () => {
   const {
     userData: { userId },
   } = useUser();
-  const { userData } = useUser();
+
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState(LOADING_STATES.loading);
   const [errorMessage, setErrorMessage] = useState("");
-  console.log({ userData });
+  // console.log({ userData });
   useEffect(() => {
     const today = getTodayDate();
     getEventsFromDate(today).then((resp) => {
@@ -63,9 +63,12 @@ const ListEvents = () => {
     <>
       <Head>
         <title>Agenda Peques</title>
+        <meta property="og:title" content="Agenda Peques" key="title" />
         <meta
+          property="og:description"
           name="description"
           content="Agenda de actividades infantiles en Ibiza"
+          key="description"
         />
       </Head>
       <div className="eventsTime">

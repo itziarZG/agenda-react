@@ -93,8 +93,15 @@ export default function CreateEvents() {
       <Head>
         <title>Agenda Peques - Crear evento</title>
         <meta
+          property="og:title"
+          content="Agenda Peques - Crear evento"
+          key="title"
+        />
+        <meta
+          property="og:description"
           name="description"
           content="Crea un evento para compartirla con todas las personas suscritas en la página de Agenda Peques"
+          key="description"
         />
       </Head>
       <Link href="/">

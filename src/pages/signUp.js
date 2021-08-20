@@ -51,8 +51,15 @@ const SignUp = () => {
       <Head>
         <title>Agenda Peques - Crear nueva cuenta</title>
         <meta
+          property="og:title"
+          content="Agenda Peques - Crear nueva cuenta"
+          key="title"
+        />
+        <meta
+          property="og:description"
           name="description"
           content="Crea una cuenta para disfrutar de todos los servicios que te ofrece la página de Agenda Peques"
+          key="description"
         />
       </Head>
       <Link href="/">

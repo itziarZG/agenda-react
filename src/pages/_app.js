@@ -9,26 +9,26 @@ import "components/HeaderDate.css";
 import "components/Info.css";
 import "components/InfoDetailEvent.css";
 import "components/ListEvents.css";
-import "components/Loading.css"
-import "components/SignIn.css"
-import "components/SignUp.css"
+import "components/Loading.css";
+import "components/SignIn.css";
+import "components/SignUp.css";
 
-import Head from 'next/head'
+import Head from "next/head";
 
-import Header from 'components/Header.js'
+import Header from "components/Header.js";
 
 function App({ Component, pageProps }) {
   return (
     <>
-    <Head>
-      <meta name="theme-color" content="#000000" />
-    </Head>
-    <div className="App">
-      <Header />
-      <Component {...pageProps} />
-    </div>
+      <Head>
+        <meta name="theme-color" content="#000000" key="theme" />
+      </Head>
+      <div className="App">
+        <Header />
+        <Component {...pageProps} />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
