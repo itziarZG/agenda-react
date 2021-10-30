@@ -148,12 +148,12 @@ export default function CreateEvents() {
               placeholder="url de la imagen"
               {...eventUrlField}
             />
-            {/* <input
+            <input
               id="file"
               className="event_form_input event_form_input_file"
               placeholder="subir una imagen"
               {...eventFileField}
-            /> */}
+            />
             <label htmlFor="start" className="event_form_label">
               Fecha*
             </label>
