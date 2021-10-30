@@ -19,15 +19,17 @@ const SignIn = () => {
 
   function handleFormSignIn(ev) {
     ev.preventDefault();
-    console.log({ userNameField, passwordField });
+  
     login(userNameField.value, passwordField.value)
-      .then(() => {
-        history.push("/");
+      .then((resp) => {
+        console.log(resp)
+        if (resp.status === 200) {
+          history.push("/");
+        } else {
+          setErrorMessage(resp.message);
+          setTimeout(() => setErrorMessage(""), 3000);
+        }
       })
-      .catch((error) => {
-        setErrorMessage(error.msg);
-        setTimeout(() => setErrorMessage(""), 3000);
-      });
   }
 
   return (

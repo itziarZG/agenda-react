@@ -33,7 +33,7 @@ export default function Header() {
         <button className="header_log_out" onClick={logout}>
           Sign out
         </button>
-        <Link href="/createEvents">
+        <Link href="/createEvents/new">
           <a className="header_create_event btn">Crear evento</a>
         </Link>
       </>

@@ -1,12 +1,13 @@
 import React from 'react';
 
 const EmptyEvents = () => {
+  console.log('empty events')
   return (
     <div className="empty_events_container">
       <svg
-        className="loading_img"
-        width="100%"
-        height="100%"
+        
+        width="25%"
+        height="25%"
         viewBox="0 0 2481 2481"
         version="1.1"
         // xmlns="http://www.w3.org/2000/svg"
@@ -150,6 +151,7 @@ const EmptyEvents = () => {
           </g>
         </g>
       </svg>
+      <p> Els events ja han passat. Afegeix un nou! </p>
     </div>
   );
 };

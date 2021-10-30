@@ -25,17 +25,16 @@ const SignUp = () => {
     console.log({ userPasswField }, { userNameField });
     if (userPasswField.value === confirmPasswField.value) {
       console.log({ userNameField, userPasswField });
-      register(userNameField.value, userPasswField.value)
-        .then(() => {
+      register(userNameField.value, userPasswField.value).then((resp) => {
+        if (resp.status === 200) {
           history.push("/");
-        })
-        .catch((error) => {
-          setErrorMessage(error.msg);
+        } else {
+          setErrorMessage(resp.message);
           setTimeout(() => setErrorMessage(""), 3000);
-        });
+        }
+      });
     } else {
       setErrorMessage("Passwords Diferentes");
-
       setTimeout(() => setErrorMessage(""), 3000);
     }
   }

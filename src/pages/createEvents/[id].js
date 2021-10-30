@@ -24,6 +24,7 @@ export default function CreateEvents() {
   const eventHourField = useField({ type: "number", name: "eventHour" });
   const eventDateField = useField({ type: "date", name: "eventDate" });
   const eventUrlField = useField({ type: "text", name: "eventUrl" });
+  const eventFileField = useField({ type: "file", name: "eventFile" });
   const [eventData, setEventData] = useState({
     title: "",
     image: "",
@@ -37,7 +38,7 @@ export default function CreateEvents() {
   });
 
   useEffect(() => {
-    if (id)
+    if (id !== "new" && id !== undefined) {
       getEventDetails(id).then(({ data }) => {
         console.log(data[0]);
         setEventData({
@@ -51,9 +52,20 @@ export default function CreateEvents() {
           hour: data[0].hour,
           user_id: userId,
         });
-        console.log({ eventData });
       });
-    console.log({ eventData });
+    } else if (id === "new") {
+      setEventData({
+        title: "",
+        image: "",
+        date: "",
+        url: "",
+        age: 0,
+        city: "",
+        info: "",
+        hour: "",
+        user_id: userId,
+      });
+    }
   }, [id]);
 
   const handleFormEvent = (ev) => {
@@ -69,7 +81,7 @@ export default function CreateEvents() {
       hour: eventHourField.value,
       user_id: userId,
     });
-    console.log({ eventData });
+
     createEvent(eventData)
       .then((resp) => {
         console.log({ resp });
@@ -83,7 +95,18 @@ export default function CreateEvents() {
       .catch((error) => console.log(error));
   };
   const updateEvent = () => {
-    console.log("updating", eventData);
+    console.log("updating");
+    // setEventData({
+    //   title:eventData.title,
+    //   image:eventData.image,
+    //   date:eventData.date,
+    //   url:eventData.url,
+    //   age:eventData.age,
+    //   city:eventData.city,
+    //   info:eventData.info,
+    //   hour:eventData.hour,
+    //   user_id: userId,
+    // });
   };
   const isSubmitDisabled =
     !eventNameField.value || !eventHourField.value || !eventDateField.value;
@@ -120,14 +143,19 @@ export default function CreateEvents() {
               Imagen del evento
             </label>
             <input
-              type="text"
-              id="name"
+              id="url"
               className="event_form_input"
               placeholder="url de la imagen"
               {...eventUrlField}
             />
+            {/* <input
+              id="file"
+              className="event_form_input event_form_input_file"
+              placeholder="subir una imagen"
+              {...eventFileField}
+            /> */}
             <label htmlFor="start" className="event_form_label">
-              Fecha
+              Fecha*
             </label>
             <input
               className="event_form_input"
@@ -135,14 +163,14 @@ export default function CreateEvents() {
               name="start"
               placeholder={Date.now()}
               min={Date.now()}
-              max="2021-12-31"
+              required
               {...eventDateField}
             ></input>
             <label htmlFor="start" className="event_form_label">
-              Hora
+              Hora*
             </label>
             <input
-              className="event_form_input"
+              className="event_form_input event_form_input_number"
               id="hour"
               placeholder="Ej: 17:00"
               {...eventHourField}
@@ -169,7 +197,11 @@ export default function CreateEvents() {
             <label htmlFor="age" className="event_form_label">
               Edad recomendada
             </label>
-            <input id="age" className="event_form_input" {...eventAgeField} />
+            <input
+              id="age"
+              className="event_form_input_number event_form_input"
+              {...eventAgeField}
+            />
             <label htmlFor="city" className="event_form_label">
               Población
             </label>
@@ -179,6 +211,7 @@ export default function CreateEvents() {
             </label>
             <textarea
               className="event_form_input"
+              rows="4"
               id="textarea"
               name="textarea"
               {...eventInformationField}

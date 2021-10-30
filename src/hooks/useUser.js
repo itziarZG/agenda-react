@@ -16,26 +16,26 @@ export default function useUser() {
   // console.log("useUser executed");
 
   const register = (userName, password) => {
-    console.log("register", { userName, password });
+    
     return signUp(userName, password).then((resp) => {
       if (resp.user) {
-        console.log("en signup", { resp });
         const { email, id } = resp.user;
         const userData = { userId: id, email };
         setUserData(userData);
         storage.setUser(userData);
+        return {status:200}
       } else return resp.error;
     });
   };
   const login = (userName, password) => {
-    console.log("login", { userName, password });
     return signIn(userName, password).then((resp) => {
+      console.log({resp})
       if (resp.data != null) {
-        console.log("en signIn", { resp });
         const { email, id } = resp.user;
         const userData = { userId: id, email };
         setUserData(userData);
         storage.setUser(userData);
+        return {status:200}
       } else {
         return resp.error;
         // Error mostrarlo con toast

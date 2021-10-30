@@ -42,8 +42,7 @@ const ListEvents = () => {
   function renderEvents() {
     const dates = Object.keys(events);
     return dates.map((date) => {
-      console.log({ userId });
-      return (
+       return (
         <div key={date} className="event_list_1">
           <Events events={events} date={date} userId={userId} />
         </div>
