@@ -59,12 +59,12 @@ const ListEvents = () => {
   return (
     <>
       <Head>
-        <title>Agenda Peques</title>
-        <meta property="og:title" content="Agenda Peques" key="title" />
+        <title>Agenda Peques Eivissa</title>
+        <meta property="og:title" content="Agenda actividades Infantiles Ibiza" key="title" />
         <meta
           property="og:description"
           name="description"
-          content="Agenda de actividades infantiles en Ibiza"
+          content="Agenda de actividades infantiles de Ibiza"
           key="description"
         />
       </Head>

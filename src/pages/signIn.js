@@ -44,7 +44,7 @@ const SignIn = () => {
         <meta
           property="og:description"
           name="description"
-          content="Inicia sesión en la página más dicharachera para ver los eventos para niños y niñas en Ibiza"
+          content="Inicia sesión en la página más dicharachera para ver los eventos para niños y niñas de Ibiza"
           key="description"
         />
       </Head>
