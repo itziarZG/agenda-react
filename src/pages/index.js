@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 
 import { getEventsFromDate } from "utils/api";
@@ -6,7 +6,7 @@ import { getTodayDate, groupByDate, sortObject } from "utils/tools";
 import EmptyEvents from "components/EmptyEvents.js";
 import Events from "components/Events.js";
 import Loading from "components/Loading.js";
-import useUser from "hooks/useUser.js";
+import userContext from "context/userContext";
 
 const LOADING_STATES = {
   empty: "empty",
@@ -14,14 +14,12 @@ const LOADING_STATES = {
 };
 
 const ListEvents = () => {
-  const {
-    userData: { userId },
-  } = useUser();
+  const { user, setUser } = useContext(userContext);
 
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState(LOADING_STATES.loading);
   const [errorMessage, setErrorMessage] = useState("");
-  // console.log({ userData });
+  console.log({ user });
   useEffect(() => {
     const today = getTodayDate();
     getEventsFromDate(today).then((resp) => {
@@ -42,9 +40,9 @@ const ListEvents = () => {
   function renderEvents() {
     const dates = Object.keys(events);
     return dates.map((date) => {
-       return (
+      return (
         <div key={date} className="event_list_1">
-          <Events events={events} date={date} userId={userId} />
+          <Events events={events} date={date} userId={user.userId} />
         </div>
       );
     });
