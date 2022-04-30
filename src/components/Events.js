@@ -6,14 +6,13 @@ import api from "../utils/api";
 
 import HeaderDate from "./HeaderDate.js";
 import IconDelete from "./icons/IconDelete.js";
-import IconEdit from "./icons/IconEdit";
 
 const Events = ({ events, date, userId }) => {
   const history = useRouter();
 
   async function deleteEvents(id) {
     await api.deleteEvent(id);
-    history.go(0);
+    window.location.reload()
   }
 
   return (
@@ -24,19 +23,19 @@ const Events = ({ events, date, userId }) => {
         return (
           <div className="event" key={ev.id}>
             <div className="event_box_1">
-              <img className="event_img" src={ev.image} alt={ev.name} />
+              <img className="event_img" src={ev.imageUrl} alt={ev.name} />
               <h1 className="event_title">{ev.title}</h1>
             </div>
             <div className="event_box_2">
-              <p className="event_date">{ev.hour}</p>
+              <div className="event_date">{ev.hour}</div>
               <div className="more_delete_btns">
                 {userId === ev.user_id && (
                   <div>
-                    <Link href={`createEvents/${ev.id}`}>
+                    {/* <Link href={`createEvents/${ev.id}`}>
                       <a>
                         <IconEdit className="icon_edit" />
                       </a>
-                    </Link>
+                    </Link> */}
                     <span onClick={() => deleteEvents(ev.id)}>
                       <IconDelete className="icon_delete" />
                     </span>

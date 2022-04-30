@@ -39,7 +39,7 @@ export function getEventsFromDate(date) {
 }
 
 export function signIn(email, password) {
-  
+
   return supabase.auth.signIn({
     email,
     password,
@@ -47,7 +47,7 @@ export function signIn(email, password) {
 }
 
 export function signUp(email, password) {
-  console.log({ email });
+
   return supabase.auth.signUp({
     email,
     password,

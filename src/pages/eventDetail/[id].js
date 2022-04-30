@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import IconCalendar from "components/icons/IconCalendar.js";
@@ -9,15 +9,16 @@ import IconZoomIn from "components/icons/IconZoomIn.js";
 import IconTarget from "components/icons/IconTarget.js";
 import IconReset from "components/icons/IconReset.js";
 import { formatDate } from "utils/tools";
-
 import { getEventDetails } from "utils/api";
 
 const InfoDetailEvent = () => {
   const { id } = useRouter().query;
   const [event, setEvent] = useState({});
+  const history = useRouter();
 
   useEffect(() => {
     if (id) getEventDetails(id).then(({ data }) => setEvent(data[0]));
+    else history.replace("/");
   }, [id]);
 
   const age = event.age ? event.age : "- -";
@@ -40,7 +41,7 @@ const InfoDetailEvent = () => {
       <div className="info_detail">
         <img
           className="info_detail_image"
-          src={event.image}
+          src={event.imageUrl}
           alt="Poster del evento"
           title="Poster del evento"
         />

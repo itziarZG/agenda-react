@@ -16,6 +16,7 @@ import "components/SignUp.css";
 import Head from "next/head";
 
 import Header from "components/Header.js";
+import { UserContextProvider } from "context/userContext";
 
 function App({ Component, pageProps }) {
   return (
@@ -24,8 +25,10 @@ function App({ Component, pageProps }) {
         <meta name="theme-color" content="#000000" key="theme" />
       </Head>
       <div className="App">
-        <Header />
-        <Component {...pageProps} />
+        <UserContextProvider>
+          <Header />
+          <Component {...pageProps} />
+        </UserContextProvider>
       </div>
     </>
   );

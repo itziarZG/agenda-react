@@ -19,10 +19,10 @@ const SignIn = () => {
 
   function handleFormSignIn(ev) {
     ev.preventDefault();
-  
+
     login(userNameField.value, passwordField.value)
       .then((resp) => {
-        console.log(resp)
+
         if (resp.status === 200) {
           history.push("/");
         } else {

@@ -1,15 +1,16 @@
 import { useRouter } from "next/router";
+import { useContext } from 'react';
 import Link from "next/link";
 import storage from "../utils/localStorage";
-import useUser from "hooks/useUser.js";
+import userContext from "context/userContext";
 
 export default function Header() {
   const history = useRouter();
-  const {
-    userData: { userId },
-  } = useUser();
-  console.log({ userId });
+
+  const { user, setUser } = useContext(userContext)
+
   function logout() {
+    setUser({ userId: null });
     storage.wipeUser();
     history.replace("/");
   }
@@ -22,6 +23,9 @@ export default function Header() {
         </Link>
         <Link href="/signUp">
           <a className="header_signUp btn">Register</a>
+        </Link>
+        <Link href="/info">
+          <a className="header_link">Info</a>
         </Link>
       </>
     );
@@ -49,7 +53,7 @@ export default function Header() {
           </a>
         </Link>
 
-        {userId === null ? renderSign() : renderLogueado()}
+        {user.length === 0 || user.userId === null ? renderSign() : renderLogueado()}
       </div>
     </>
   );

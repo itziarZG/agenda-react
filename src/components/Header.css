@@ -63,7 +63,7 @@
 .btn {
   padding: 10px 16px;
   cursor: pointer;
-  border: none;
+  border: 1px solid var(--primary);
   background: var(--primary);
   color: var(--white);
   border-radius: 8px;
@@ -81,6 +81,13 @@
 .header_signUp {
   background: var(--white);
   color: var(--primary);
+}
+.header_link{
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-left: 6px
 }
 
 @media screen and (min-width: 410px) {
