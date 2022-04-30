@@ -2,14 +2,13 @@ import { useRouter } from "next/router";
 import { useContext } from 'react';
 import Link from "next/link";
 import storage from "../utils/localStorage";
-import useUser from "hooks/useUser.js";
 import userContext from "context/userContext";
 
 export default function Header() {
   const history = useRouter();
 
   const { user, setUser } = useContext(userContext)
-  console.log({ user })
+
   function logout() {
     setUser({ userId: null });
     storage.wipeUser();

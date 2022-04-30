@@ -24,14 +24,14 @@ export default function Info() {
         </Link>
 
         <p className="info__texts__text">
-          CAT- Hola. Volia, simplement, explicar-te què és i el perquè d'aquest
+          <span class="strong">CAT</span>- Hola. Volia, simplement, explicar-te què és i el perquè d'aquest
           projecte. Aquesta web surt de la meva pròpia necessitat
           d'assabentar-me dels esdeveniments que hi ha a l'illa per a anar amb
           la meva família, especialment amb els meus fills petits. Durant uns
           anys he buscat en agendes en línia de l'illa i no he trobat cap que
           compti amb esdeveniments infantils especialment o són massa
           especialitzades en esdeveniments concrets (escoles o biblioteques) o
-          en població concreta (ajuntaments). La majoria de vegades és per boca
+          en població concreta (Ajuntaments). La majoria de vegades és per boca
           a boca i per això aquest projecte està pensat perquè les famílies ens
           ajudem entre nosaltres a trobar esdeveniments infantils. La idea és
           que quan sapiguem d'un esdeveniment infantil a l'illa el publiquem
@@ -44,11 +44,11 @@ export default function Info() {
           projecte creixi tant com per a necessitar una validació anterior però
           si fes falta, es faria... Si ets professional del sector, pots
           donar-te d'alta i publicar les teves bitlles, estarem encantad@s! Si
-          ets ajuntament, biblioteca o col·legi, també ets més que bienvenid@.
+          ets Ajuntament, biblioteca o col·legi, també ets més que benvingut.
         </p>
         <br className="info__line"></br>
-        <p>
-          CAST-Quería, simplemente, explicarte qué es y el porqué de este
+        <p className="info__texts__text">
+          <span class="strong">CAST</span>-Quería, simplemente, explicarte qué es y el porqué de este
           proyecto. Esta web sale de mi propia necesidad de enterarme de los
           eventos que hay en la isla para ir con mi familia, especialmente con
           mis hijos pequeños. Durante unos años he buscado en agendas online de
@@ -67,7 +67,7 @@ export default function Info() {
           crezca tanto como para necesitar una validación anterior pero si
           hiciera falta, se haría... Si eres profesional del sector, puedes
           darte de alta y publicar tus bolos, estaremos encantad@s! Si eres
-          ayuntamiento, biblioteca o colegio, también eres más que bienvenid@.
+          Ayuntamiento, biblioteca o colegio, también eres más que bienvenido.
         </p>
       </div>
     </>

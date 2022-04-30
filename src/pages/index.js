@@ -19,7 +19,7 @@ const ListEvents = () => {
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState(LOADING_STATES.loading);
   const [errorMessage, setErrorMessage] = useState("");
-  console.log({ user });
+
   useEffect(() => {
     const today = getTodayDate();
     getEventsFromDate(today).then((resp) => {

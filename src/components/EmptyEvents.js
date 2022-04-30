@@ -1,11 +1,10 @@
 import React from 'react';
 
 const EmptyEvents = () => {
-  console.log('empty events')
   return (
     <div className="empty_events_container">
       <svg
-        
+
         width="25%"
         height="25%"
         viewBox="0 0 2481 2481"

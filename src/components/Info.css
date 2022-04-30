@@ -13,6 +13,7 @@
   /* mask-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
 }
 .info__texts {
+  width: 100%;
   height: calc(100vh - 185px);
   color: var(--gray-800);
   font-size: 16px;
@@ -21,7 +22,9 @@
   overflow: auto;
   padding: 10px;
 }
-
+.info__texts__text{
+  width: 100%;
+}
 .info__link {
   font-weight: 700;
   cursor: pointer;
@@ -53,6 +56,10 @@
 .info__line {
   width: 100%;
   border-bottom: var(--gray-200) 1px solid;
+}
+.strong{
+  font-weight: 700;
+  color:black
 }
 @media all and (min-width: 768px) {
   .info__texts {

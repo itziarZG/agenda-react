@@ -1,33 +1,35 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { createEvent, getEventDetails } from "utils/api";
 import IconReset from "components/icons/IconReset.js";
 import Head from "next/head";
 import useField from "hooks/useField.js";
-import useUser from "hooks/useUser.js";
+import userContext from "context/userContext";
 
 export default function CreateEvents() {
   const { id } = useRouter().query;
   const history = useRouter();
-  const { userData: userId } = useUser();
+
+  const { user } = useContext(userContext)
+  const { userId } = user
   const [error, setErrorMessage] = useState("");
   const eventImgField = useField({ type: "text", name: "eventImg" });
   const eventNameField = useField({ type: "text", name: "eventName" });
   const eventLinkField = useField({ type: "text", name: "eventLink" });
-  const eventAgeField = useField({ type: "number", name: "eventAge" });
+  const eventAgeField = useField({ type: "text", name: "eventAge" });
   const eventCityField = useField({ type: "text", name: "eventCity" });
   const eventInformationField = useField({
     type: "text",
     name: "eventInformation",
   });
-  const eventHourField = useField({ type: "number", name: "eventHour" });
+  const eventHourField = useField({ type: "text", name: "eventHour" });
   const eventDateField = useField({ type: "date", name: "eventDate" });
   const eventUrlField = useField({ type: "text", name: "eventUrl" });
-  const eventFileField = useField({ type: "file", name: "eventFile" });
+  // const eventFileField = useField({ type: "file", name: "eventFile" });
   const [eventData, setEventData] = useState({
     title: "",
-    image: "",
+    imageUrl: "",
     date: "",
     url: "",
     age: 0,
@@ -40,10 +42,10 @@ export default function CreateEvents() {
   useEffect(() => {
     if (id !== "new" && id !== undefined) {
       getEventDetails(id).then(({ data }) => {
-        console.log(data[0]);
+
         setEventData({
           title: data[0].title,
-          image: data[0].image,
+          imageUrl: data[0].image,
           date: data[0].date,
           url: data[0].url,
           age: data[0].age,
@@ -56,7 +58,7 @@ export default function CreateEvents() {
     } else if (id === "new") {
       setEventData({
         title: "",
-        image: "",
+        imageUrl: "",
         date: "",
         url: "",
         age: 0,
@@ -70,9 +72,9 @@ export default function CreateEvents() {
 
   const handleFormEvent = (ev) => {
     ev.preventDefault();
-    setEventData({
+    const data = {
       title: eventNameField.value,
-      image: eventImgField.value,
+      imageUrl: eventImgField.value,
       date: eventDateField.value,
       url: eventLinkField.value,
       age: eventAgeField.value,
@@ -80,11 +82,12 @@ export default function CreateEvents() {
       info: eventInformationField.value,
       hour: eventHourField.value,
       user_id: userId,
-    });
+    }
+    setEventData(data);
 
-    createEvent(eventData)
+    createEvent(data)
       .then((resp) => {
-        console.log({ resp });
+
         if (resp.error) {
           setErrorMessage(resp.error.message);
           setTimeout(() => setErrorMessage(""), 3000);
@@ -92,10 +95,10 @@ export default function CreateEvents() {
           history.push("/");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setErrorMessage(error.message));
   };
   const updateEvent = () => {
-    console.log("updating");
+
     // setEventData({
     //   title:eventData.title,
     //   image:eventData.image,
@@ -139,6 +142,24 @@ export default function CreateEvents() {
         <div className="form_event">
           <h2 className="create_event_title">Crear Evento</h2>
           <form className="event_form" onSubmit={handleFormEvent}>
+            <label htmlFor="name" className="event_form_label">
+              Nombre del Evento*
+            </label>
+            <input
+              id="name"
+              className="event_form_input"
+              {...eventNameField}
+              required
+            />
+            <label className="event_form_label" htmlFor="link">
+              Link del evento
+            </label>
+            <input
+              id="link"
+              className="event_form_input"
+              placeholder="http://agendapequeseivissa.tk"
+              {...eventLinkField}
+            />
             <label className="event_form_label" htmlFor="text">
               Imagen del evento
             </label>
@@ -148,17 +169,17 @@ export default function CreateEvents() {
               placeholder="url de la imagen"
               {...eventUrlField}
             />
-            <input
+            {/* <input
               id="file"
               className="event_form_input event_form_input_file"
               placeholder="subir una imagen"
               {...eventFileField}
-            />
+            /> */}
             <label htmlFor="start" className="event_form_label">
               Fecha*
             </label>
             <input
-              className="event_form_input"
+              className="event_form_input event_form_input_number"
               id="start"
               name="start"
               placeholder={Date.now()}
@@ -176,24 +197,8 @@ export default function CreateEvents() {
               {...eventHourField}
               required
             ></input>
-            <label className="event_form_label" htmlFor="link">
-              Link del evento
-            </label>
-            <input
-              id="link"
-              className="event_form_input"
-              placeholder="http://agendapequeseivissa.tk"
-              {...eventLinkField}
-            />
-            <label htmlFor="name" className="event_form_label">
-              Nombre del Evento
-            </label>
-            <input
-              id="name"
-              className="event_form_input"
-              {...eventNameField}
-              required
-            />
+
+
             <label htmlFor="age" className="event_form_label">
               Edad recomendada
             </label>
@@ -217,22 +222,12 @@ export default function CreateEvents() {
               {...eventInformationField}
             ></textarea>
             {error !== "" ? <p style={{ color: "red" }}>{error}</p> : <></>}
-            {id ? (
-              <input
-                type="submit"
-                value="Modificar evento"
-                className="event_btn"
-                disabled={isSubmitDisabled}
-              />
-            ) : (
-              <input
-                type="button"
-                onClick={updateEvent()}
-                value="Crear evento"
-                className="event_btn"
-                disabled={isSubmitDisabled}
-              />
-            )}
+            <button
+              type="submit"
+              value="Crear evento"
+              className="event_btn"
+              disabled={isSubmitDisabled}
+            >Crear Evento </button>
           </form>
         </div>
       </div>

@@ -61,7 +61,6 @@
   font-weight: 400;
   line-height: 24px;
   box-sizing: border-box;
-  height: 40px;
   padding: 10px 16px;
   outline: none;
   border-radius: 8px;
@@ -76,10 +75,11 @@
   visibility: hidden;
 }
 .event_form_input_file:before {
-  content: 'Select some files';
+  content: 'Busca el archivo';
   display: inline-block;
   background: linear-gradient(top, #f9f9f9, #e3e3e3);
   border: 1px solid #999;
+  color: var(--gray-800);
   border-radius: 3px;
   padding: 5px 8px;
   outline: none;
@@ -91,6 +91,7 @@
   font-size: 10pt;
 }
 .event_form_input_file:hover::before {
+  
   border-color: black;
 }
 .event_form_inputactive_file:active::before {

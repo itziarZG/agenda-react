@@ -6,7 +6,7 @@ import userContext from "context/userContext";
 export default function useUser() {
   // const [userData, setUserData] = useState({ userId: null });
   const { user, setUser } = useContext(userContext);
-  console.log({ user })
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("timekids-user"));
 
@@ -16,8 +16,6 @@ export default function useUser() {
 
     }
   }, []);
-
-  console.log("useUser executed", { user });
 
   const register = (userName, password) => {
 
@@ -34,7 +32,7 @@ export default function useUser() {
   };
   const login = (userName, password) => {
     return signIn(userName, password).then((resp) => {
-      console.log({ resp })
+
       if (resp.data != null) {
         const { email, id } = resp.user;
         const userData = { userId: id, email };
@@ -48,7 +46,7 @@ export default function useUser() {
       }
     });
   };
-  // console.log({ userData });
+
   return {
     register,
     login,

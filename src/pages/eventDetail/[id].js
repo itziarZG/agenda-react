@@ -41,7 +41,7 @@ const InfoDetailEvent = () => {
       <div className="info_detail">
         <img
           className="info_detail_image"
-          src={event.image}
+          src={event.imageUrl}
           alt="Poster del evento"
           title="Poster del evento"
         />

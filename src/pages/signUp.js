@@ -22,9 +22,9 @@ const SignUp = () => {
 
   function handleFormSignUp(ev) {
     ev.preventDefault();
-    console.log({ userPasswField }, { userNameField });
+
     if (userPasswField.value === confirmPasswField.value) {
-      console.log({ userNameField, userPasswField });
+
       register(userNameField.value, userPasswField.value).then((resp) => {
         if (resp.status === 200) {
           history.push("/");
@@ -98,7 +98,7 @@ const SignUp = () => {
               type="submit"
               value="Sign up"
               className="signUp_btn js-SignIn"
-              // disabled={disableButton}
+            // disabled={disableButton}
             />
           </form>
           {error !== "" ? <p style={{ color: "red" }}>{error}</p> : <></>}
