@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { createEvent, getEventDetails } from "utils/api";
+import { createEvent, getEventDetails,uploadFile } from "utils/api";
 import IconReset from "components/icons/IconReset.js";
 import Head from "next/head";
 import useField from "hooks/useField.js";
@@ -25,8 +25,8 @@ export default function CreateEvents() {
   });
   const eventHourField = useField({ type: "text", name: "eventHour" });
   const eventDateField = useField({ type: "date", name: "eventDate" });
-  const eventUrlField = useField({ type: "text", name: "eventUrl" });
-  // const eventFileField = useField({ type: "file", name: "eventFile" });
+  //const eventUrlField = useField({ type: "text", name: "eventUrl" });
+  const eventFileField = useField({ type: "file", name: "eventFile" });
   const [eventData, setEventData] = useState({
     title: "",
     imageUrl: "",
@@ -70,32 +70,35 @@ export default function CreateEvents() {
     }
   }, [id]);
 
-  const handleFormEvent = (ev) => {
+  const handleFormEvent = async (ev) => {
     ev.preventDefault();
-    const data = {
+    const data ={
       title: eventNameField.value,
       imageUrl: eventImgField.value,
       date: eventDateField.value,
-      url: eventLinkField.value,
       age: eventAgeField.value,
       city: eventCityField.value,
       info: eventInformationField.value,
       hour: eventHourField.value,
       user_id: userId,
     }
+    const file = eventFileField.value
     setEventData(data);
-
-    createEvent(data)
-      .then((resp) => {
-
-        if (resp.error) {
-          setErrorMessage(resp.error.message);
-          setTimeout(() => setErrorMessage(""), 3000);
-        } else if (resp.status === 201) {
-          history.push("/");
+    const response= await createEvent(data);
+    console.log({response});
+    if (response.error) {
+      setErrorMessage(response.error.message);
+      setTimeout(() => setErrorMessage(""), 3000);
+    } else if (response.status === 201) {
+        if (!file) history.push("/");
+         else {
+             // with respoonse id upload image
+              const id = response.data.id
+              const { error } = await uploadFile(file,id);
+              if (error) console.log('Error uploading file: ', error.message)
+              else history.push("/");
+            }
         }
-      })
-      .catch((error) => setErrorMessage(error.message));
   };
   const updateEvent = () => {
 
@@ -163,18 +166,18 @@ export default function CreateEvents() {
             <label className="event_form_label" htmlFor="text">
               Imagen del evento
             </label>
-            <input
+            {/* <input
               id="url"
               className="event_form_input"
               placeholder="url de la imagen"
               {...eventUrlField}
-            />
-            {/* <input
+            /> */}
+            <input
               id="file"
               className="event_form_input event_form_input_file"
               placeholder="subir una imagen"
               {...eventFileField}
-            /> */}
+            />
             <label htmlFor="start" className="event_form_label">
               Fecha*
             </label>

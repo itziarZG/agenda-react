@@ -11,6 +11,13 @@ export function createEvent(eventData) {
   return supabase.from("events").insert([eventData]);
 }
 
+export function uploadFile(file,id){
+  return supabase.storage.from('avatars').upload(`public/${id}.png`,file, {
+    cacheControl: '3600',
+     upsert: false
+})
+}
+
 api.updateEvent = async function (eventId, eventData) {
   const { data } = await supabase
     .from("events")
